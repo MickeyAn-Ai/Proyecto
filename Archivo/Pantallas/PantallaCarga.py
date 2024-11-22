@@ -71,12 +71,17 @@ class Ui_MainWindow(object):
 
     def goToSecondWindow(self):
         # Crear y mostrar la segunda ventana
-        self.second_window = QtWidgets.QWidget()  # Crear un QWidget para la segunda ventana
+        """self.second_window = QtWidgets.QDialog()  # Crear un QWidget para la segunda ventana
         ui = Ui_Main()  # Crear una instancia de la clase Ui_Form
         ui.setupUi(self.second_window)  # Configurar la UI de la segunda ventana
         self.second_window.show()  # Mostrar la segunda ventana
         self.second_window.raise_()  # Asegura que la ventana esté al frente
-        QTimer.singleShot(100, MainWindow.close)  # Esperar un poco antes de cerrar la ventana
+        QtCore.QTimer.singleShot(100, MainWindow.close)  # Esperar un poco antes de cerrar la ventana"""
+        self.second_window = Ui_Main()
+        self.second_window.show()  # Mostrar la segunda ventana
+        self.second_window.raise_()  # Asegura que la ventana esté al frente
+        QtCore.QTimer.singleShot(100, MainWindow.close)  # Esperar un poco antes de cerrar la ventana
+
 
 if __name__ == "__main__":
     app = QtWidgets.QApplication(sys.argv)  # Crear la aplicación Qt

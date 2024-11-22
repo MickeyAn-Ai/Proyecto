@@ -66,6 +66,9 @@ class Ui_Dialog(object):
         self.gridLayout.addItem(spacerItem, 0, 1, 1, 1)
 
         self.retranslateUi(Dialog)
+        QtCore.QMetaObject.connectSlotsByName(Dialog)
+
+        self.retranslateUi(Dialog)
         self.buttonBox.accepted.connect(Dialog.accept) # type: ignore
         self.buttonBox.rejected.connect(Dialog.reject) # type: ignore
         QtCore.QMetaObject.connectSlotsByName(Dialog)
@@ -82,10 +85,3 @@ class Ui_Dialog(object):
         self.pushButton.setText(_translate("Dialog", "Sí"))
         self.label.setText(_translate("Dialog", "Temperatura:"))
 
-if __name__ == "__main__":
-    import sys
-    app = QtWidgets.QApplication(sys.argv)  # Crear la aplicación Qt
-    Dialog = QtWidgets.QDialog()  # Crear una instancia del QDialog
-    ui = Ui_Dialog()  # Crear la interfaz de usuario
-    ui.setupUi(Dialog)  # Configurar la interfaz en el dialog
-    Dialog.exec()  # Ejecutar el diálogo

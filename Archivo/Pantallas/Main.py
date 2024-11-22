@@ -9,8 +9,15 @@
 from PyQt6 import QtCore, QtGui, QtWidgets
 from PyQt6.QtCore import QTimer, pyqtSignal
 from Configuracion import Ui_Dialog
+from Especificaciones import Ui_Especificaciones
+from Historial import Ui_Historial
+from PyQt6.QtWidgets import QMainWindow
 
-class Ui_Main(object):
+class Ui_Main(QMainWindow):
+    def __init__(self):
+        super().__init__()
+        self.setupUi(self)
+
     def setupUi(self, Form):
         Form.setObjectName("Form")
         Form.resize(1024, 600)
@@ -107,7 +114,7 @@ class Ui_Main(object):
         self.pushButton_7 = QtWidgets.QPushButton(parent=self.widget1)
         self.pushButton_7.setMinimumSize(QtCore.QSize(151, 61))
         self.pushButton_7.setObjectName("pushButton_7")
-        self.pushButton_7.clicked.connect(self.irTerceraVentana)
+        self.pushButton_7.clicked.connect(self.irConfiguracion)
         self.verticalLayout_2.addWidget(self.pushButton_7)
         spacerItem7 = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Policy.Minimum, QtWidgets.QSizePolicy.Policy.Expanding)
         self.verticalLayout_2.addItem(spacerItem7)
@@ -119,6 +126,7 @@ class Ui_Main(object):
         self.pushButton_8.setSizePolicy(sizePolicy)
         self.pushButton_8.setMinimumSize(QtCore.QSize(151, 61))
         self.pushButton_8.setObjectName("pushButton_8")
+        self.pushButton_8.clicked.connect(self.irEspecificaciones)
         self.verticalLayout_2.addWidget(self.pushButton_8)
         spacerItem8 = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Policy.Minimum, QtWidgets.QSizePolicy.Policy.Expanding)
         self.verticalLayout_2.addItem(spacerItem8)
@@ -130,6 +138,7 @@ class Ui_Main(object):
         self.pushButton_5 = QtWidgets.QPushButton(parent=self.widget1)
         self.pushButton_5.setMinimumSize(QtCore.QSize(151, 61))
         self.pushButton_5.setObjectName("pushButton_5")
+        self.pushButton_5.clicked.connect(self.irHistorial)
         self.verticalLayout.addWidget(self.pushButton_5)
         spacerItem10 = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Policy.Minimum, QtWidgets.QSizePolicy.Policy.Expanding)
         self.verticalLayout.addItem(spacerItem10)
@@ -168,8 +177,9 @@ class Ui_Main(object):
         self.pushButton_6.setText(_translate("Form", "Al momento"))
 
 
-    def irTerceraVentana(self):
+    def irConfiguracion(self):
         # Crear y mostrar la segunda ventana
+        print("Botón presionado, abriendo la ventana secundaria...")
         self.configuracion_ventana = QtWidgets.QDialog()  # Crear un QWidget para la segunda ventana
         ui = Ui_Dialog()  # Crear una instancia de la clase Ui_Form
         ui.setupUi(self.configuracion_ventana)  # Configurar la UI de la segunda ventana
@@ -178,10 +188,40 @@ class Ui_Main(object):
         #QTimer.singleShot(100, Ui_Main.close)  # Esperar un poco antes de cerrar la ventana
         #QTimer.singleShot(100, self.close)
 
-if __name__ == "__main__":
+    def irEspecificaciones(self):
+        # Crear y mostrar la segunda ventana
+        print("Botón presionado, abriendo la ventana secundaria...")
+        self.ventana_especificaciones = QtWidgets.QDialog()  # Crear un QWidget para la segunda ventana
+        ui = Ui_Especificaciones()  # Crear una instancia de la clase Ui_Form
+        ui.setupUi(self.ventana_especificaciones)  # Configurar la UI de la segunda ventana
+        self.ventana_especificaciones.show()  # Mostrar la segunda ventana
+        self.ventana_especificaciones.raise_()  # Asegura que la ventana esté al frente
+
+    def irHistorial(self):
+        # Crear y mostrar la segunda ventana
+        print("Botón presionado, abriendo la ventana secundaria...")
+        self.ventana_historial = QtWidgets.QDialog()  # Crear un QWidget para la segunda ventana
+        ui = Ui_Historial()  # Crear una instancia de la clase Ui_Form
+        ui.setupUi(self.ventana_historial)  # Configurar la UI de la segunda ventana
+        self.ventana_historial.show()  # Mostrar la segunda ventana
+        self.ventana_historial.raise_()  # Asegura que la ventana esté al frente
+
+"""if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)  # Crear la aplicación Qt
     Main = QtWidgets.QDialog()  # Crear una instancia del QDialog
     ui = Ui_Main()  # Crear la interfaz de usuario
     ui.setupUi(Main)  # Configurar la interfaz en el dialog
-    Main.exec()  # Ejecutar el diálogo
+    Main.exec()  # Ejecutar el diálogo"""
+
+def main():
+    import sys
+    app = QtWidgets.QApplication(sys.argv)  # Crear la aplicación Qt
+    Main = QtWidgets.QDialog()  # Crear una instancia del QDialog
+    ui = Ui_Main()  # Crear la interfaz de usuario
+    ui.setupUi(Main)  # Configurar la interfaz en el dialog
+    Main.show()  # Asegurarse de mostrar la ventana principal
+    sys.exit(app.exec())  # Ejecutar la aplicación
+
+if __name__ == "__main__":
+    main()
